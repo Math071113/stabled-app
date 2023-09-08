@@ -21,9 +21,11 @@ function App() {
       console.log(prompt);
 
       const api =
-        "https://v826gojc3h.execute-api.us-east-1.amazonaws.com/test/";
+        process.env.NODE_ENV === "development"
+          ? "/test/stabled"
+          : "https://v826gojc3h.execute-api.us-east-1.amazonaws.com/test/stabled";
       const userData = { data: e.target.searchQuery.value };
-      console.log(data);
+      console.log(userData);
       const { data } = await axios.post(api, userData, {
         headers: {
           "Content-Type": "application/json",
